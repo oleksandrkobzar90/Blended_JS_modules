@@ -155,56 +155,57 @@
 
 // Приклад використання:
 
-class Calculator {
-  number(value) {
-    this.value = value;
-    return this;
-  }
+// class Calculator {
+//   number(value) {
+//     this.value = value;
+//     return this;
+//   }
 
-  add(value) {
-    this.value += value;
-    return this;
-  }
+//   add(value) {
+//     this.value += value;
+//     return this;
+//   }
 
-  subtract(value) {
-    this.value -= value;
-    return this;
-  }
+//   subtract(value) {
+//     this.value -= value;
+//     return this;
+//   }
 
-  multiply(value) {
-    this.value *= value;
-    return this;
-  }
+//   multiply(value) {
+//     this.value *= value;
+//     return this;
+//   }
 
-  divide(value) {
-    if (value === 0) {
-      alert('Ділити на 0 не можна!');
-    } else {
-      this.value /= value;
-    }
-    return this;
-  }
+//   divide(value) {
+//     if (value === 0) {
+//       //! alert('Ділити на 0 не можна!'); Alert погана ідея!!!!
+//       throw new Error('Ділити на 0 не можна!');
+//     } else {
+//       this.value /= value;
+//     }
+//     return this;
+//   }
 
-  getResult() {
-    return this.value;
-  }
+//   getResult() {
+//     return this.value;
+//   }
 
-  //   get value() {}
-  //   set value(newValue) {}
-}
+//   //   get value() {}
+//   //   set value(newValue) {}
+// }
 
-const calc = new Calculator();
-console.log(calc);
+// const calc = new Calculator();
+// console.log(calc);
 
-const result = calc
-  .number(10) // Встановлюємо початкове значення 10
-  .add(5) // Додаємо 5 (10 + 5 = 15)
-  .subtract(3) // Віднімаємо 3 (15 - 3 = 12)
-  .multiply(4) // Множимо на 4 (12 * 4 = 48)
-  .divide(2) // Ділимо на 2 (48 / 2 = 24)
-  .getResult(); // Отримуємо результат: 24
+// const result = calc
+//   .number(10) // Встановлюємо початкове значення 10
+//   .add(5) // Додаємо 5 (10 + 5 = 15)
+//   .subtract(3) // Віднімаємо 3 (15 - 3 = 12)
+//   .multiply(4) // Множимо на 4 (12 * 4 = 48)
+//   .divide(0) // Ділимо на 2 (48 / 2 = 24)
+//   .getResult(); // Отримуємо результат: 24
 
-console.log(result); // 24
+// console.log(result); // 24
 
 // calc.value = 50;
 // console.log(calc.value);
@@ -214,4 +215,92 @@ console.log(result); // 24
 // Оголоси приватні властивості #login #email, доступ до яких зроби
 // через геттер та сеттер login email
 
-class Client {}
+// class Client {
+//   #login;
+//   #email;
+
+//   constructor({ login, email }) {
+//     this.#login = login;
+//     this.#email = email;
+//   }
+
+//   set login(login) {
+//     this.#login = login;
+//   }
+
+//   get login() {
+//     return this.#login;
+//   }
+
+//   set email(email) {
+//     this.#email = email;
+//   }
+
+//   get email() {
+//     return this.#email;
+//   }
+// }
+
+// const poly = new Client({ login: 'mango', email: 'mango@gmail.com' });
+
+// poly.login = 'Poly';
+// poly.email = 'poly@gmail.com';
+
+// console.log(poly.login);
+// console.log(poly.email);
+
+//!=========================================
+// Завдання 13:
+//  Наслідування у класах!
+// Cтворіть клас `Person`, який містить наступні властивості:
+//  - `name` - ім'я людини;
+//  - `age`- вік людини;
+//  - `gender` - стать людини;
+//  - `email`- електронна пошта людини.
+
+// Крім того, клас `Person` має мати метод `getDetails()`,
+// який повертає об'єкт з ім'ям, віком, статтю
+//та електронною поштою людини.
+
+//
+// Потім Створіть клас `Employee`, який розширює клас `Person` і містить наступні властивості:
+//  - salary - зарплата співробітника;
+//  - department - відділ, в якому працює співробітник.
+// Крім того, клас `Employee` має мати метод `getEmployeeDetails()`, який повертає об'єкт з зарплатою співробітника та відділом, в якому він працює.
+
+class Person {
+  constructor(name, age, gender, email) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+    this.email = email;
+  }
+
+  getDetails() {
+    return {
+      name: this.name,
+      age: this.age,
+      gender: this.gender,
+      email: this.email,
+    };
+  }
+}
+
+class Employee extends Person {
+  constructor(name, age, gender, email, salary, department) {
+    super(name, age, gender, email);
+    this.salary = salary;
+    this.department = department;
+  }
+
+  getEmployeeDetails() {
+    return {
+      salary: this.salary,
+      department: this.department,
+    };
+  }
+}
+
+const mango = new Employee('Mango', 25, 'male', 'mango@gmail.com', 5000, 'IT');
+console.log(mango.getDetails());
+console.log(mango.getEmployeeDetails());
